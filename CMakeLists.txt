@@ -73,10 +73,16 @@ if(NOT JWT_DISABLE_PICOJSON AND JWT_EXTERNAL_PICOJSON)
   find_package(picojson 1.3.0 REQUIRED)
 endif()
 
+## Add external dependencies from conan
+set(CONAN_CMAKE_SETUP ${CMAKE_BINARY_DIR}/conan_paths.cmake)
+if (EXISTS ${CONAN_CMAKE_SETUP} AND NOT IS_DIRECTORY ${CONAN_CMAKE_SETUP})
+    include(${CONAN_CMAKE_SETUP})
+endif ()
+
 if(JWT_BUILD_EXAMPLES OR JWT_BUILD_TESTS)
   if(JWT_EXTERNAL_NLOHMANN_JSON)
     message(STATUS "jwt-cpp: using find_package for nlohmann-json required for tests")
-    find_package(nlohmann_json CONFIG REQUIRED)
+    find_package(nlohmann_json 3.11.2 REQUIRED)
   else()
     message(STATUS "jwt-cpp: using FetchContent for nlohmann-json required for tests")
     include(FetchContent)
