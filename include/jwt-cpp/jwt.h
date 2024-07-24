@@ -510,7 +510,8 @@ namespace jwt {
 		template<typename error_category = error::rsa_error>
 		std::string write_bio_to_string(std::unique_ptr<BIO, decltype(&BIO_free_all)>& bio_out, std::error_code& ec) {
 			char* ptr = nullptr;
-			auto len = BIO_get_mem_data(bio_out.get(), &ptr);
+			// auto len = BIO_get_mem_data(bio_out.get(), &ptr);
+            auto len = BIO_ctrl(bio_out.get(),BIO_CTRL_INFO,0,(char *)(&ptr));
 			if (len <= 0 || ptr == nullptr) {
 				ec = error_category::convert_to_pem_failed;
 				return {};
