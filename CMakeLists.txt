@@ -27,9 +27,12 @@ include(CMakeDependentOption)
 cmake_dependent_option(JWT_EXTERNAL_PICOJSON
   "Use find_package() to locate picojson, provided to integrate with package managers" OFF
   "NOT JWT_DISABLE_PICOJSON" OFF)
-cmake_dependent_option(JWT_EXTERNAL_NLOHMANN_JSON
-  "Use find_package() to locate nlohman-json required for tests and examples" OFF
-  "JWT_BUILD_EXAMPLES OR JWT_BUILD_TESTS" OFF)
+# cmake_dependent_option(JWT_EXTERNAL_NLOHMANN_JSON
+#   "Use find_package() to locate nlohman-json required for tests and examples" OFF
+#   "JWT_BUILD_EXAMPLES OR JWT_BUILD_TESTS" OFF)
+
+# always use external nlohmann_json
+set(JWT_EXTERNAL_NLOHMANN_JSON ON)
 
 set(JWT_SSL_LIBRARY_OPTIONS OpenSSL LibreSSL wolfSSL)
 set(JWT_SSL_LIBRARY OpenSSL CACHE STRING "Determines which SSL library to build with")

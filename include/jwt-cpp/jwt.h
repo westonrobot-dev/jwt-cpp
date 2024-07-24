@@ -12,6 +12,7 @@
 #include "base.h"
 #endif
 
+#include <openssl/bio.h>
 #include <openssl/ec.h>
 #include <openssl/ecdsa.h>
 #include <openssl/err.h>
