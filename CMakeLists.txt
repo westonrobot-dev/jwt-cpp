@@ -64,7 +64,6 @@ endif()
 # Lookup dependencies
 if(${JWT_SSL_LIBRARY} MATCHES "OpenSSL")
   set(OPENSSL_ROOT_DIR "/usr/lib/${CMAKE_SYSTEM_PROCESSOR}-linux-gnu")
-  set(OPENSSL_USE_STATIC_LIBS TRUE)
   find_package(OpenSSL REQUIRED)
 elseif(${JWT_SSL_LIBRARY} MATCHES "LibreSSL")
   find_package(LibreSSL 3.0.0 REQUIRED)
